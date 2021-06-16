@@ -6,7 +6,7 @@
 #define DHTTYPE DHT11
 #define DHTPIN D3
 #define valve1 D4
-#define valve2 D5
+//#define valve2 D5
 #define moisturePin A0
 
 char ssid[] = "Ranga";
