@@ -5,10 +5,10 @@
 #include "DHT.h"
 #define DHTTYPE DHT11
 #define DHTPIN D3
-#define valve1 D4
-//#define valve2 D5
-//#define flamepin D6
-//#define buzzer D7
+#define valve1 D1
+#define valve2 D2
+#define flamePin D4
+#define buzzer D5
 #define moisturePin A0
 
 char ssid[] = "Ranga";
@@ -20,7 +20,7 @@ char password[] = "5461705d5593d7c76fb3ca09349df28091897ab7";
 char clientID[] = "5bef1b80-c9c1-11eb-883c-638d8ce4c23d";
 
 unsigned long lastMillis = 0;
-int motor=D0;
+int motor=D8;
 int Flame=HIGH;
 float moisturePercentage;
 DHT dht(DHTPIN, DHTTYPE);
@@ -30,9 +30,13 @@ void setup() {
 	Serial.begin(9600);
 	Cayenne.begin(username, password, clientID, ssid, wifiPassword);
   dht.begin();
+  pinMode(flamePin,INPUT);
   pinMode(motor,OUTPUT);
-  digitalWrite(motor,LOW);
   pinMode(valve1,OUTPUT);
+  pinMode(valve2,OUTPUT);
+  pinMode(buzzer,OUTPUT);
+
+  digitalWrite(motor,LOW);
   
 }
 
@@ -41,14 +45,14 @@ void loop() {
    float h = dht.readHumidity();
    float t = dht.readTemperature();
    moisturePercentage = ( 100.00 - ( (analogRead(moisturePin) / 1023.00) * 100.00 ));
-   //Flame=digitalRead(flamepin);
-   control(moisturePercentage);
+   Flame=digitalRead(flamePin);
+   //control(moisturePercentage);
    //Firecheck(Flame);
    
    Cayenne.celsiusWrite(1, t);
    Cayenne.virtualWrite(2,h,TYPE_RELATIVE_HUMIDITY,UNIT_PERCENT);
    Cayenne.virtualWrite(3,moisturePercentage);
-  
+   Cayenne.virtualWrite(6,Flame);
    
   
 }
@@ -57,30 +61,24 @@ CAYENNE_IN(0){
 digitalWrite(motor,!getValue.asInt());
 }
 
+CAYENNE_IN(4){
 
-void control(float p){
-  if (p<50){
-    digitalWrite(valve1,LOW);
-    }
-  else
-{digitalWrite(valve1,HIGH);}
-  
+digitalWrite(valve1,!getValue.asInt());
 }
-/*void Firecheck(bool F){
-if (F==LOW){
 
-  digitalWrite(buzzer,LOW);
-  digitalWrite(valve1,LOW);
-  digitalWrite(valve2,LOW);
-//  Cayenne.virtualWrite(4,1);
+CAYENNE_IN(5){
 
- 
-  }
- else{
-  digitalWrite(buzzer,HIGH);
-  digitalWrite(valve1,HIGH);
-  digitalWrite(valve2,HIGH);
-// Cayenne.virtualWrite(4,0);
- 
-}*/
+digitalWrite(valve2,!getValue.asInt());
+}
+
+//void control(float p){
+//  if (p<50){
+//    digitalWrite(valve1,LOW);
+//    }
+//  else
+//{digitalWrite(valve1,HIGH);}
+//  
+//}
+
+  
  
