@@ -10,8 +10,8 @@
 #define buzzer D5
 #define moisturePin A0
 
-char ssid[] = "Ranga";
-char wifiPassword[] = "9480282010";
+char ssid[] = "Keerthi";
+char wifiPassword[] = "12345678";
 
 
 char username[] = "f6895170-c916-11eb-a2e4-b32ea624e442";
@@ -49,7 +49,7 @@ void loop() {
    if(Flame==HIGH){
     FlameValue=5;//random value for mapping high
    }
-   else{
+   else if (Flame==LOW){
     FlameValue=8;}  // random value for low
    Cayenne.celsiusWrite(1, t);
    Cayenne.virtualWrite(2,h,TYPE_RELATIVE_HUMIDITY,UNIT_PERCENT);
@@ -73,4 +73,8 @@ CAYENNE_IN(5){
 digitalWrite(valve2,!getValue.asInt());
 }
 
+CAYENNE_IN(7){
+
+digitalWrite(buzzer,!getValue.asInt());
+}
  
