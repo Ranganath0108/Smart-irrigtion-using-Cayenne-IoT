@@ -46,8 +46,6 @@ void loop() {
    float t = dht.readTemperature();
    moisturePercentage = ( 100.00 - ( (analogRead(moisturePin) / 1023.00) * 100.00 ));
    Flame=digitalRead(flamePin);
-   //control(moisturePercentage);
-   //Firecheck(Flame);
    
    Cayenne.celsiusWrite(1, t);
    Cayenne.virtualWrite(2,h,TYPE_RELATIVE_HUMIDITY,UNIT_PERCENT);
