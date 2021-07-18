@@ -71,14 +71,4 @@ CAYENNE_IN(5){
 digitalWrite(valve2,!getValue.asInt());
 }
 
-//void control(float p){
-//  if (p<50){
-//    digitalWrite(valve1,LOW);
-//    }
-//  else
-//{digitalWrite(valve1,HIGH);}
-//  
-//}
-
-  
  
