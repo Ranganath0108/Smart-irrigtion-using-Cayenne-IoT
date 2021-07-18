@@ -13,7 +13,7 @@
 char ssid[] = "Keerthi";
 char wifiPassword[] = "12345678";
 
-
+ 
 char username[] = "f6895170-c916-11eb-a2e4-b32ea624e442";
 char password[] = "5461705d5593d7c76fb3ca09349df28091897ab7";
 char clientID[] = "5bef1b80-c9c1-11eb-883c-638d8ce4c23d";
@@ -48,9 +48,11 @@ void loop() {
    Flame=digitalRead(flamePin);
    if(Flame==HIGH){
     FlameValue=5;//random value for mapping high
+    digitalWrite(buzzer,HIGH);
    }
    else if (Flame==LOW){
-    FlameValue=8;}  // random value for low
+    FlameValue=8;
+    digitalWrite(buzzer,LOW);}  // random value for low
    Cayenne.celsiusWrite(1, t);
    Cayenne.virtualWrite(2,h,TYPE_RELATIVE_HUMIDITY,UNIT_PERCENT);
    Cayenne.virtualWrite(3,moisturePercentage);
@@ -73,8 +75,8 @@ CAYENNE_IN(5){
 digitalWrite(valve2,!getValue.asInt());
 }
 
-CAYENNE_IN(7){
+/*CAYENNE_IN(7){
 
 digitalWrite(buzzer,!getValue.asInt());
-}
+}*/
  
