@@ -1,4 +1,3 @@
-
 #define CAYENNE_DEBUG
 #define CAYENNE_PRINT Serial
 #include <CayenneMQTTESP8266.h>
@@ -24,6 +23,7 @@ int motor=D8;
 int Flame=HIGH;
 float moisturePercentage;
 DHT dht(DHTPIN, DHTTYPE);
+int FlameValue=0;
 
 
 void setup() {
@@ -46,11 +46,15 @@ void loop() {
    float t = dht.readTemperature();
    moisturePercentage = ( 100.00 - ( (analogRead(moisturePin) / 1023.00) * 100.00 ));
    Flame=digitalRead(flamePin);
-   
+   if(Flame==HIGH){
+    FlameValue=5;//random value for mapping high
+   }
+   else{
+    FlameValue=8;}  // random value for low
    Cayenne.celsiusWrite(1, t);
    Cayenne.virtualWrite(2,h,TYPE_RELATIVE_HUMIDITY,UNIT_PERCENT);
    Cayenne.virtualWrite(3,moisturePercentage);
-   Cayenne.virtualWrite(6,Flame);
+   Cayenne.virtualWrite(6,FlameValue);
    
   
 }
