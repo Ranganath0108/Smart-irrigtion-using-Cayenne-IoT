@@ -37,6 +37,7 @@ void setup() {
   pinMode(buzzer,OUTPUT);
 
   digitalWrite(motor,LOW);
+  digitalWrite(buzzer,HIGH);  
   
 }
 
