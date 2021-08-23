@@ -1,3 +1,4 @@
+
 #define CAYENNE_DEBUG
 #define CAYENNE_PRINT Serial
 #include <CayenneMQTTESP8266.h>
@@ -12,9 +13,9 @@
 #define moisturePin A0
 
 
-char ssid[] = "vivo 1811";
+char ssid[] = "Ranga";
  
-char wifiPassword[] = "gfgctiptur";
+char wifiPassword[] = "9480282010";
 
  
 char username[] = "7a203260-f3a3-11e9-84bb-8f71124cfdfb";
@@ -46,7 +47,7 @@ void loop() {
   Cayenne.loop();
    float h = dht.readHumidity();
    float t = dht.readTemperature();
-   moisturePercentage = ( 100.00 - ( (analogRead(moisturePin) / 1023.00) * 100.00 ))+10;
+   moisturePercentage = ( 100.00 - ( (analogRead(moisturePin) / 1023.00) * 100.00 ));
 
 
     //checing SoilMoisture percent
@@ -58,10 +59,6 @@ void loop() {
    {digitalWrite(valve1,LOW);
    digitalWrite(valve2,LOW);
 }
-    
-    
-    
-    
     // Writing in Cayenne Dashboard
    Cayenne.celsiusWrite(1, t);
    Cayenne.virtualWrite(2,h,TYPE_RELATIVE_HUMIDITY,UNIT_PERCENT);
