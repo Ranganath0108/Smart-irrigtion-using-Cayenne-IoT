@@ -13,14 +13,14 @@
 #define moisturePin A0
 
 
-char ssid[] = "Ranga";
+char ssid[] = "Keerthi";
  
-char wifiPassword[] = "9480282010";
+char wifiPassword[] = "12345678";
 
  
-char username[] = "7a203260-f3a3-11e9-84bb-8f71124cfdfb";
-char password[] = "eadd436cf23d25093c463c77a1b6f17fc5b5b672";
-char clientID[] = "9990db40-f833-11eb-b767-3f1a8f1211ba";
+char username[] = "f6895170-c916-11eb-a2e4-b32ea624e442";
+char password[] = "5461705d5593d7c76fb3ca09349df28091897ab7";
+char clientID[] = "5bef1b80-c9c1-11eb-883c-638d8ce4c23d";
 
 unsigned long lastMillis = 0;
 int motor=D8;
